@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'App\Http\Controllers\User', 'prefix' => 'users'], function () {
     Route::post('/', 'StoreController');
-//    Route::get('/{person}', 'ShowController');
-//    Route::get('/', 'IndexController');
-//    Route::patch('/{person}', 'UpdateController');
-//    Route::delete('/{person}', 'DeleteController');
+});
+
+Route::group(['namespace' => 'App\Http\Controllers\Fruit', 'prefix' => 'fruits'], function () {
+    Route::get('/', 'IndexController');
 });
