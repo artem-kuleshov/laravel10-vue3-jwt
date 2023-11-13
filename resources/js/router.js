@@ -12,8 +12,13 @@ const routes = [
         component: () => import('./components/User/Registration.vue')
     },
     {
+        name: 'users.personal',
+        path: '/personal',
+        component: () => import('./components/User/Personal.vue')
+    },
+    {
         name: 'fruits.index',
-        path: '/fruit',
+        path: '/fruits',
         component: () => import('./components/Fruit/Index.vue')
     }
 ];

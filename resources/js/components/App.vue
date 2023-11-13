@@ -1,9 +1,6 @@
 <template>
     <div class="container">
-        <router-link :to="{name:'users.login'}">Login</router-link>
-        <router-link :to="{name:'users.registration'}">Registration</router-link>
-        <router-link :to="{name:'fruits.index'}">List</router-link>
-
+        <Navbar />
         <div>
             <router-view></router-view>
         </div>
@@ -11,8 +8,10 @@
 </template>
 
 <script>
+import Navbar from "./Includes/Navbar.vue";
 export default {
-    name: "App"
+    name: "App",
+    components: {Navbar}
 }
 </script>
 
