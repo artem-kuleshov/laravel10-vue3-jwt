@@ -19,6 +19,9 @@ export default {
                 .then(res => {
                     localStorage.setItem('access_token', res.data.access_token)
                     this.$router.push({ name: 'users.personal' })
+
+                    const appComponent = this.$parent.$parent
+                    appComponent.$refs.navbar.setAccessToken(res.data.access_token)
                 })
         }
     }

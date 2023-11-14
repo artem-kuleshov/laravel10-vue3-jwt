@@ -20,10 +20,35 @@ const routes = [
         name: 'fruits.index',
         path: '/fruits',
         component: () => import('./components/Fruit/Index.vue')
+    },
+    {
+        name: '404',
+        path: '/:catchAll(.*)',
+        component: () => import('./components/Pages/404.vue')
     }
 ];
 
-export default new VueRouter.createRouter({
+const route = new VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
+    linkActiveClass: 'active',
     routes: routes
 })
+
+route.beforeEach((to, from, next) => {
+
+    const accessToken = localStorage.getItem('access_token')
+
+    if (!accessToken) {
+        if (to.name !== 'users.login' && to.name !== 'users.registration') {
+            return next({ name: 'users.login' })
+        }
+    } else {
+        if (to.name === 'users.login') {
+            return next({ name: 'users.personal' })
+        }
+    }
+
+    next()
+})
+
+export default route
