@@ -15,6 +15,9 @@
                     <li class="nav-item">
                         <router-link :to="{name:'fruits.index'}" class="nav-link">List</router-link>
                     </li>
+                    <li class="nav-item">
+                        <a @click="logout" href="javascript:void(0)" class="nav-link">Logout</a>
+                    </li>
                 </template>
             </ul>
         </div>
@@ -22,6 +25,7 @@
 </template>
 
 <script>
+import api from "../../api";
 export default {
     name: "Navbar",
     data() {
@@ -40,6 +44,14 @@ export default {
         },
         setAccessToken(token) {
             this.accessToken = token
+        },
+        logout() {
+            api.post('/api/auth/logout')
+            .then(res => {
+                localStorage.removeItem('access_token')
+                this.setAccessToken(null)
+                this.$router.push({ name: 'users.login' })
+            })
         }
     }
 }

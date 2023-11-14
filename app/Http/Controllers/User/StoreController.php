@@ -15,8 +15,9 @@ class StoreController extends Controller
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-        User::firstOrCreate(['email' => $data['email']], $data);
 
-        return response([]);
+        $user = User::create($data);
+
+        return response(['access_token' => auth()->tokenById($user->id)]);
     }
 }
